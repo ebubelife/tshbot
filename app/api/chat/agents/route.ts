@@ -5,12 +5,13 @@ import { AgentExecutor, createOpenAIFunctionsAgent } from "langchain/agents";
 import { ChatOpenAI } from "@langchain/openai";
 import { SerpAPI } from "@langchain/community/tools/serpapi";
 import { Calculator } from "langchain/tools/calculator";
-import { AIMessage, ChatMessage, HumanMessage } from "@langchain/core/messages";
+
 
 import {
   ChatPromptTemplate,
   MessagesPlaceholder,
 } from "@langchain/core/prompts";
+import { HumanMessage, AIMessage, ChatMessage } from "langchain/schema";
 
 export const runtime = "edge";
 
