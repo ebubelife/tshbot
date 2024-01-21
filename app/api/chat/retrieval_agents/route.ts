@@ -5,14 +5,16 @@ import { createClient } from "@supabase/supabase-js";
 
 import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
 import { AIMessage, ChatMessage, HumanMessage } from "@langchain/core/messages";
-import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
+
 import { createRetrieverTool } from "langchain/tools/retriever";
-import { AgentExecutor, createOpenAIFunctionsAgent } from "langchain/agents";
+
 
 import {
   ChatPromptTemplate,
   MessagesPlaceholder,
 } from "@langchain/core/prompts";
+import { AgentExecutor, createOpenAIFunctionsAgent } from "langchain/agents";
+import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
 
 export const runtime = "edge";
 
