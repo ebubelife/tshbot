@@ -1,540 +1,162 @@
-export default `# QA and Chat over Documents
+export default `Computer security, cybersecurity, digital security or information technology security (IT security) is the protection of computer systems and networks from attacks by malicious actors that may result in unauthorized information disclosure, theft of, or damage to hardware, software, or data, as well as from the disruption or misdirection of the services they provide.[1][2]
 
-Chat and Question-Answering (QA) over \`data\` are popular LLM use-cases.
+The field is significant due to the expanded reliance on computer systems, the Internet,[3] and wireless network standards such as Bluetooth and Wi-Fi. Also, due to the growth of smart devices, including smartphones, televisions, and the various devices that constitute the Internet of things (IoT). Cybersecurity is one of the most significant challenges of the contemporary world, due to both the complexity of information systems and the societies they support. Security is of especially high importance for systems that govern large-scale systems with far-reaching physical effects, such as power distribution, elections, and finance.[4][5]
 
-\`data\` can include many things, including:
+Vulnerabilities and attacks
+Main article: Vulnerability (computing)
+A vulnerability is a weakness in the design, implementation, operation, or internal control of a computer or system. Most of the vulnerabilities that have been discovered are documented in the Common Vulnerabilities and Exposures (CVE) database.[6] An exploitable vulnerability is one for which at least one working attack or exploit exists.[7] Vulnerabilities can be researched, reverse-engineered, hunted, or exploited using automated tools or customized scripts.[8][9]
 
-* \`Unstructured data\` (e.g., PDFs)
-* \`Structured data\` (e.g., SQL)
-* \`Code\` (e.g., Python)
+Various people or parties are vulnerable to cyber attacks; however, different groups are likely to experience different types of attacks more than others.[10]
 
-Below we will review Chat and QA on \`Unstructured data\`.
+In April 2023, the United Kingdom Department for Science, Innovation & Technology released a report on cyber attacks over the last 12 months.[11] They surveyed 2,263 UK businesses, 1,174 UK registered charities and 554 education institutions. The research found that "32% of businesses and 24% of charities overall recall any breaches or attacks from the last 12 months." These figures were much higher for "medium businesses (59%), large businesses (69%) and high-income charities with £500,000 or more in annual income (56%)."[11] Yet, although medium or large businesses are more often the victims, since larger companies have generally improved their security over the last decade, small and midsize businesses (SMBs) have also become increasingly vulnerable as they often "do not have advanced tools to defend the business."[10] SMBs are most likely to be affected by malware, ransomware, phishing, man-in-the-middle attacks, and Denial-of Service (DoS) Attacks.[10]
 
-![intro.png](/img/qa_intro.png)
+Normal internet users are most likely to be affected by untargeted cyber attacks.[12] These are where attackers indiscriminately target as many devices, services or users as possible. They do this using techniques that take advantage of the openness of the Internet. These strategies mostly include phishing, ransomware, water holing and scanning.[12]
 
-\`Unstructured data\` can be loaded from many sources.
+To secure a computer system, it is important to understand the attacks that can be made against it, and these threats can typically be classified into one of the following categories:
 
-Check out the [document loader integrations here](/docs/modules/data_connection/document_loaders/) to browse the set of supported loaders.
+Backdoor
+A backdoor in a computer system, a cryptosystem, or an algorithm, is any secret method of bypassing normal authentication or security controls. These weaknesses may exist for many reasons, including original design or poor configuration.[13] Due to the nature of backdoors, they are of greater concern to companies and databases as opposed to individuals.
 
-Each loader returns data as a LangChain \`Document\`.
+Backdoors may be added by an authorized party to allow some legitimate access, or by an attacker for malicious reasons. Criminals often use malware to install backdoors, giving them remote administrative access to a system.[14] Once they have access, cybercriminals can "modify files, steal personal information, install unwanted software, and even take control of the entire computer."[14]
 
-\`Documents\` are turned into a Chat or QA app following the general steps below:
+Backdoors can be very hard to detect, and are usually discovered by someone who has access to the application source code or intimate knowledge of the operating system of the computer.
 
-* \`Splitting\`: [Text splitters](/docs/modules/data_connection/document_transformers/) break \`Documents\` into splits of specified size
-* \`Storage\`: Storage (e.g., often a [vectorstore](/docs/modules/data_connection/vectorstores/)) will house [and often embed](https://www.pinecone.io/learn/vector-embeddings/) the splits
-* \`Retrieval\`: The app retrieves splits from storage (e.g., often [with similar embeddings](https://www.pinecone.io/learn/k-nearest-neighbor/) to the input question)
-* \`Output\`: An [LLM](/docs/modules/model_io/models/llms/) produces an answer using a prompt that includes the question and the retrieved splits
+Denial-of-service attack
+Denial-of-service attacks (DoS) are designed to make a machine or network resource unavailable to its intended users.[15] Attackers can deny service to individual victims, such as by deliberately entering a wrong password enough consecutive times to cause the victim's account to be locked, or they may overload the capabilities of a machine or network and block all users at once. While a network attack from a single IP address can be blocked by adding a new firewall rule, many forms of distributed denial-of-service (DDoS) attacks are possible, where the attack comes from a large number of points. In this case defending against these attacks is much more difficult. Such attacks can originate from the zombie computers of a botnet or from a range of other possible techniques, including distributed reflective denial-of-service (DRDoS), where innocent systems are fooled into sending traffic to the victim.[15] With such attacks, the amplification factor makes the attack easier for the attacker because they have to use little bandwidth themselves. To understand why attackers may carry out these attacks, see the 'attacker motivation' section.
 
-![flow.jpeg](/img/qa_flow.jpeg)
+Direct-access attacks
+A direct-access attack is when an unauthorized user (an attacker) gains physical access to a computer, most likely to directly copy data from it or to steal information.[16] Attackers may also compromise security by making operating system modifications, installing software worms, keyloggers, covert listening devices or using wireless microphones. Even when the system is protected by standard security measures, these may be bypassed by booting another operating system or tool from a CD-ROM or other bootable media. Disk encryption and Trusted Platform Module are designed to prevent these attacks.
 
-## Quickstart
+Direct service attackers are related in concept to direct memory attacks which allow an attacker to gain direct access to a computer's memory.[17] The attacks "take advantage of a feature of modern computers that allows certain devices, such as external hard drives, graphics cards or network cards, to access the computer's memory directly."[17]
 
-Let's load this [blog post](https://lilianweng.github.io/posts/2023-06-23-agent/) on agents as an example \`Document\`.
+To help prevent these attacks, computer users must ensure that they have strong passwords, that their computer is locked at all times when they are not using it, and that they keep their computer with them at all times when traveling.[17]
 
-We'll have a QA app in a few lines of code.
+Eavesdropping
+Eavesdropping is the act of surreptitiously listening to a private computer conversation (communication), usually between hosts on a network. It typically occurs when a user connects to a network where traffic is not secured or encrypted and sends sensitive business data to a colleague, which, when listened to by an attacker, could be exploited.[18] Data transmitted across an "open network" allows an attacker to exploit a vulnerability and intercept it via various methods.
 
-First, set environment variables and install packages required for the guide:
+Unlike malware, direct-access attacks, or other forms of cyber attacks, eavesdropping attacks are unlikely to negatively affect the performance of networks or devices, making them difficult to notice.[18] In fact, "the attacker does not need to have any ongoing connection to the software at all. The attacker can insert the software onto a compromised device, perhaps by direct insertion or perhaps by a virus or other malware, and then come back some time later to retrieve any data that is found or trigger the software to send the data at some determined time."[19]
 
-\`\`\`shell
-> yarn add cheerio
-# Or load env vars in your preferred way:
-> export OPENAI_API_KEY="..."
-\`\`\`
+Using a virtual private network (VPN), which encrypts data between two points, is one of the most common forms of protection against eavesdropping. Using the best form of encryption possible for wireless networks is best practice, as well as using HTTPS instead of an unencrypted HTTP.[20]
 
-## 1. Loading, Splitting, Storage
+Programs such as Carnivore and NarusInSight have been used by the Federal Bureau of Investigation (FBI) and NSA to eavesdrop on the systems of internet service providers. Even machines that operate as a closed system (i.e., with no contact with the outside world) can be eavesdropped upon by monitoring the faint electromagnetic transmissions generated by the hardware. TEMPEST is a specification by the NSA referring to these attacks.
 
-### 1.1 Getting started
+Malware
+Malicious software (malware) is any software code or computer program "intentionally written to harm a computer system or its users."[21] Once present on a computer, it can leak sensitive details such as personal information, business information and passwords, can give control of the system to the attacker, and can corrupt or delete data permanently.[22] Another type of malware is ransomware, which is when "malware installs itself onto a victim's machine, encrypts their files, and then turns around and demands a ransom (usually in Bitcoin) to return that data to the user."[23]
 
-Specify a \`Document\` loader.
+Types of malware include some of the following:
 
-\`\`\`typescript
-// Document loader
-import { CheerioWebBaseLoader } from "langchain/document_loaders/web/cheerio";
+Viruses are a specific type of malware, and are normally a malicious code that hijacks software with the intension to "do damage and spread copies of itself." Copies are made with the aim to spread to other programs on a computer.[21]
+Worms are similar to viruses, however viruses can only function when a user runs (opens) a compromised program. Worms are self-replicating malware that spread between programs, apps and devices without the need for human interaction.[21]
+Trojan horses are programs that pretend to be helpful or hide themselves within desired or legitimate software to "trick users into installing them." Once installed, a RAT (remote access trojan) can create a secret backdoor on the affected device to cause damage.[21]
+Spyware is a type of malware that secretly gathers information on an infected computers and transmits the sensitive information back to the attacker. One of the most common forms of spyware are known as keyloggers, which is a kind of malware which recorders all of a users keyboard inputs/keystrokes, used to "allow hackers to harvest usernames, passwords, bank account and credit card numbers."[21]
+Scareware, as the name suggests, is a form of malware which uses social engineering (manipulation) to scare, shock, trigger anxiety, or suggest the perception of a threat in order to manipulate users into buying or installing unwanted software. These attacks often begin with a "sudden pop-up with an urgent message, usually warning the user that they've broken the law or their device has a virus."[21]
+Multi-vector, polymorphic attacks
+Surfacing in 2017, a new class of multi-vector,[24] polymorphic[25] cyber threats combine several types of attacks and change form to avoid cybersecurity controls as they spread.
 
-const loader = new CheerioWebBaseLoader(
-  "https://lilianweng.github.io/posts/2023-06-23-agent/"
-);
-const data = await loader.load();
-\`\`\`
+Multi-vector polymorphic attacks, as the name describes, are both multi-vectored and polymorphic.[26] Firstly, they are a singular attack that involves multiple methods of attack. In this sense, they are “multi-vectored (i.e. the attack can use multiple means of propagation such as via the Web, email and applications." However, they are also multi-staged, meaning that “they can infiltrate networks and move laterally inside the network.”[26] The attacks can be polymorphic, meaning that the cyberattacks used such as viruses, worms or trojans “constantly change (“morph”) making it nearly impossible to detect them using signature-based defences.”[26]
 
-Split the \`Document\` into chunks for embedding and vector storage.
+Phishing
 
+An example of a phishing email, disguised as an official email from a (fictional) bank. The sender is attempting to trick the recipient into revealing confidential information by confirming it at the phisher's website. Note the misspelling of the words received and discrepancy as recieved and discrepency, respectively. Although the URL of the bank's webpage appears to be legitimate, the hyperlink points at the phisher's webpage.
+Phishing is the attempt of acquiring sensitive information such as usernames, passwords, and credit card details directly from users by deceiving the users.[27] Phishing is typically carried out by email spoofing, instant messaging, text message, or on a phone call. They often directs users to enter details at a fake website whose look and feel are almost identical to the legitimate one.[28] The fake website often asks for personal information, such as login details and passwords. This information can then be used to gain access to the individual's real account on the real website.
 
-\`\`\`typescript
-import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+Preying on a victim's trust, phishing can be classified as a form of social engineering. Attackers can use creative ways to gain access to real accounts. A common scam is for attackers to send fake electronic invoices[29] to individuals showing that they recently purchased music, apps, or others, and instructing them to click on a link if the purchases were not authorized. A more strategic type of phishing is spear-phishing which leverages personal or organization-specific details to make the attacker appear like a trusted source. Spear-phishing attacks target specific individuals, rather than the broad net cast by phishing attempts.[30]
 
-const textSplitter = new RecursiveCharacterTextSplitter({
-  chunkSize: 500,
-  chunkOverlap: 0,
-});
+Privilege escalation
+Privilege escalation describes a situation where an attacker with some level of restricted access is able to, without authorization, elevate their privileges or access level.[31] For example, a standard computer user may be able to exploit a vulnerability in the system to gain access to restricted data; or even become root and have full unrestricted access to a system. The severity of attacks can range from attacks simply sending an unsolicited email to a ransomware attack on large amounts of data. Privilege escalation usually starts with social engineering techniques, often phishing.[31]
 
-const splitDocs = await textSplitter.splitDocuments(data);
-\`\`\`
+Privilege escalation can be separated into to strategies, horizontal and vertical privilege escalation:
 
-Embed and store the splits in a vector database (for demo purposes we use an unoptimized, in-memory example but you can [browse integrations here](/docs/modules/data_connection/vectorstores/integrations/)):
+Horizontal escalation (or account takeover) is where an attacker gains access to a normal user account that has relatively low-level privileges. This may be through stealing the user's username and password. Once they have access, they have gained a “foothold,” and using this foothold the attacker then may move around the network of users at this same lower level, gaining access to information of this similar privilege.[31]
+Vertical escalation however targets people higher up in a company and often with more administrative power, such as an employee in IT with a higher privilege. Using this privileged account will then enable to attacker to invade other accounts.[31]
+Side-channel attack
+Main article: Side-channel attack
+Any computational system affects its environment in some form. This effect it has on its environment includes a wide range of criteria, which can range from electromagnetic radiation to residual effect on RAM cells which as a consequence make a Cold boot attack possible, to hardware implementation faults that allow for access and or guessing of other values that normally should be inaccessible. In Side-channel attack scenarios, the attacker would gather such information about a system or network to guess its internal state and as a result access the information which is assumed by the victim to be secure.
 
+Social engineering
+Social engineering, in the context of computer security, aims to convince a user to disclose secrets such as passwords, card numbers, etc. or grant physical access by, for example, impersonating a senior executive, bank, a contractor, or a customer.[32] This generally involves exploiting people's trust, and relying on their cognitive biases. A common scam involves emails sent to accounting and finance department personnel, impersonating their CEO and urgently requesting some action. One of the main techniques of social engineering are phishing attacks.
 
-\`\`\`typescript
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { MemoryVectorStore } from "langchain/vectorstores/memory";
+In early 2016, the FBI reported that such business email compromise (BEC) scams had cost US businesses more than $2 billion in about two years.[33]
 
-const embeddings = new OpenAIEmbeddings();
+In May 2016, the Milwaukee Bucks NBA team was the victim of this type of cyber scam with a perpetrator impersonating the team's president Peter Feigin, resulting in the handover of all the team's employees' 2015 W-2 tax forms.[34]
 
-const vectorStore = await MemoryVectorStore.fromDocuments(splitDocs, embeddings);
-\`\`\`
+Spoofing
+Main article: Spoofing attack
+Spoofing is an act of pretending to be a valid entity through the falsification of data (such as an IP address or username), in order to gain access to information or resources that one is otherwise unauthorized to obtain. Spoofing is closely related to phishing.[35][36] There are several types of spoofing, including:
 
-Here are the three pieces together:
+Email spoofing, is where an attacker forges the sending (From, or source) address of an email.
+IP address spoofing, where an attacker alters the source IP address in a network packet to hide their identity or impersonate another computing system.
+MAC spoofing, where an attacker modifies the Media Access Control (MAC) address of their network interface controller to obscure their identity, or to pose as another.
+Biometric spoofing, where an attacker produces a fake biometric sample to pose as another user.[37]
+Address Resolution Protocol (ARP) spoofing, where an attacker sends spoofed address resolution protocol onto a local area network to associate their Media Access Control address with a different host's IP address. This causes data to be sent to the attacker rather than the intended host.
+In 2018, the cybersecurity firm Trellix published research on the life-threatening risk of spoofing in the healthcare industry.[38]
 
-![lc.png](/img/qa_data_load.png)
+Tampering
+Tampering describes a malicious modification or alteration of data. An intentional but unauthorized act resulting in the modification of a system, components of systems, its intended behavior, or data. So-called Evil Maid attacks and security services planting of surveillance capability into routers are examples.[39]
 
-### 1.2 Going Deeper
+HTML smuggling
+HTML smuggling allows an attacker to "smuggle" a malicious code inside a particular HTML or web page.[40] HTML files can carry payloads concealed as benign, inert data in order to defeat content filters. These payloads can be reconstructed on the other side of the filter.[41]
 
-#### 1.2.1 Integrations
+When a target user opens the HTML, the malicious code is activated; the web browser then "decodes" the script, which then unleashes the malware onto the target's device.[40]
 
-\`Document Loaders\`
-
-* Browse document loader integrations [here](/docs/modules/data_connection/document_loaders/).
-
-* See further documentation on loaders [here](/docs/modules/data_connection/document_loaders/).
-
-\`Document Transformers\`
-
-* All can ingest loaded \`Documents\` and process them (e.g., split).
-
-* See further documentation on transformers [here](/docs/modules/data_connection/document_transformers/).
-
-\`Vectorstores\`
-
-* Browse vectorstore integrations [here](/docs/modules/data_connection/vectorstores/integrations/).
-
-* See further documentation on vectorstores [here](/docs/modules/data_connection/vectorstores/).
-
-## 2. Retrieval
-
-### 2.1 Getting started
-
-Retrieve [relevant splits](https://www.pinecone.io/learn/what-is-similarity-search/) for any question using \`similarity_search\`.
-
-
-\`\`\`typescript
-const relevantDocs = await vectorStore.similaritySearch("What is task decomposition?");
-
-console.log(relevantDocs.length);
-
-// 4
-\`\`\`
-
-
-### 2.2 Going Deeper
-
-#### 2.2.1 Retrieval
-
-Vectorstores are commonly used for retrieval.
-
-But, they are not the only option.
-
-For example, SVMs (see thread [here](https://twitter.com/karpathy/status/1647025230546886658?s=20)) can also be used.
-
-LangChain [has many retrievers and retrieval methods](/docs/modules/data_connection/retrievers/) including, but not limited to, vectorstores.
-
-All retrievers implement some common methods, such as \`getRelevantDocuments()\`.
-
-
-## 3. QA
-
-### 3.1 Getting started
-
-Distill the retrieved documents into an answer using an LLM (e.g., \`gpt-3.5-turbo\`) with \`RetrievalQA\` chain.
-
-
-\`\`\`typescript
-import { RetrievalQAChain } from "langchain/chains";
-import { ChatOpenAI } from "langchain/chat_models/openai";
-
-const model = new ChatOpenAI({ modelName: "gpt-3.5-turbo" });
-const chain = RetrievalQAChain.fromLLM(model, vectorstore.asRetriever());
-
-const response = await chain.call({
-  query: "What is task decomposition?"
-});
-console.log(response);
-
-/*
-  {
-    text: 'Task decomposition refers to the process of breaking down a larger task into smaller, more manageable subgoals. By decomposing a task, it becomes easier for an agent or system to handle complex tasks efficiently. Task decomposition can be done through various methods such as using prompting or task-specific instructions, or through human inputs. It helps in planning and organizing the steps required to complete a task effectively.'
-  }
-*/
-\`\`\`
-
-### 3.2 Going Deeper
-
-#### 3.2.1 Integrations
-
-\`LLMs\`
-
-* Browse LLM integrations and further documentation [here](/docs/modules/model_io/models/).
-
-#### 3.2.2 Customizing the prompt
-
-The prompt in \`RetrievalQA\` chain can be customized as follows.
-
-
-\`\`\`typescript
-import { RetrievalQAChain } from "langchain/chains";
-import { ChatOpenAI } from "langchain/chat_models/openai";
-import { PromptTemplate } from "langchain/prompts";
-
-const model = new ChatOpenAI({ modelName: "gpt-3.5-turbo" });
-
-const template = \`Use the following pieces of context to answer the question at the end.
-If you don't know the answer, just say that you don't know, don't try to make up an answer.
-Use three sentences maximum and keep the answer as concise as possible.
-Always say "thanks for asking!" at the end of the answer.
-{context}
-Question: {question}
-Helpful Answer:\`;
-
-const chain = RetrievalQAChain.fromLLM(model, vectorstore.asRetriever(), {
-  prompt: PromptTemplate.fromTemplate(template),
-});
-
-const response = await chain.call({
-  query: "What is task decomposition?"
-});
-
-console.log(response);
-
-/*
-  {
-    text: 'Task decomposition is the process of breaking down a large task into smaller, more manageable subgoals. This allows for efficient handling of complex tasks and aids in planning and organizing the steps needed to achieve the overall goal. Thanks for asking!'
-  }
-*/
-\`\`\`
-
-
-#### 3.2.3 Returning source documents
-
-The full set of retrieved documents used for answer distillation can be returned using \`return_source_documents=True\`.
-
-
-\`\`\`typescript
-import { RetrievalQAChain } from "langchain/chains";
-import { ChatOpenAI } from "langchain/chat_models/openai";
-
-const model = new ChatOpenAI({ modelName: "gpt-3.5-turbo" });
-
-const chain = RetrievalQAChain.fromLLM(model, vectorstore.asRetriever(), {
-  returnSourceDocuments: true
-});
-
-const response = await chain.call({
-  query: "What is task decomposition?"
-});
-
-console.log(response.sourceDocuments[0]);
-
-/*
-Document {
-  pageContent: 'Task decomposition can be done (1) by LLM with simple prompting like "Steps for XYZ.\\n1.", "What are the subgoals for achieving XYZ?", (2) by using task-specific instructions; e.g. "Write a story outline." for writing a novel, or (3) with human inputs.',
-  metadata: [Object]
-}
-*/
-\`\`\`
-
-
-#### 3.2.4 Customizing retrieved docs in the LLM prompt
-
-Retrieved documents can be fed to an LLM for answer distillation in a few different ways.
-
-\`stuff\`, \`refine\`, and \`map-reduce\` chains for passing documents to an LLM prompt are well summarized [here](/docs/modules/chains/document/).
-
-\`stuff\` is commonly used because it simply "stuffs" all retrieved documents into the prompt.
-
-The [loadQAChain](/docs/modules/chains/document/) methods are easy ways to pass documents to an LLM using these various approaches.
-
-
-\`\`\`typescript
-import { loadQAStuffChain } from "langchain/chains";
-
-const stuffChain = loadQAStuffChain(model);
-
-const stuffResult = await stuffChain.call({
-  input_documents: relevantDocs,
-  question: "What is task decomposition
-});
-
-console.log(stuffResult);
-/*
-{
-  text: 'Task decomposition is the process of breaking down a large task into smaller, more manageable subgoals or steps. This allows for efficient handling of complex tasks by focusing on one subgoal at a time. Task decomposition can be done through various methods such as using simple prompting, task-specific instructions, or human inputs.'
-}
-*/
-\`\`\`
-
-## 4. Chat
-
-### 4.1 Getting started
-
-To keep chat history, we use a variant of the previous chain called a \`ConversationalRetrievalQAChain\`.
-First, specify a \`Memory buffer\` to track the conversation inputs / outputs.
-
-
-\`\`\`typescript
-import { ConversationalRetrievalQAChain } from "langchain/chains";
-import { BufferMemory } from "langchain/memory";
-import { ChatOpenAI } from "langchain/chat_models/openai";
-
-const memory = new BufferMemory({
-  memoryKey: "chat_history",
-  returnMessages: true,
-});
-\`\`\`
-
-Next, we initialize and call the chain:
-
-\`\`\`typescript
-const model = new ChatOpenAI({ modelName: "gpt-3.5-turbo" });
-const chain = ConversationalRetrievalQAChain.fromLLM(model, vectorstore.asRetriever(), {
-  memory
-});
-
-const result = await chain.call({
-  question: "What are some of the main ideas in self-reflection?"
-});
-console.log(result);
-
-/*
-{
-  text: 'Some main ideas in self-reflection include:\n' +
-    '\n' +
-    '1. Iterative Improvement: Self-reflection allows autonomous agents to improve by continuously refining past action decisions and correcting mistakes.\n' +
-    '\n' +
-    '2. Trial and Error: Self-reflection plays a crucial role in real-world tasks where trial and error are inevitable. It helps agents learn from failed trajectories and make adjustments for future actions.\n' +
-    '\n' +
-    '3. Constructive Criticism: Agents engage in constructive self-criticism of their big-picture behavior to identify areas for improvement.\n' +
-    '\n' +
-    '4. Decision and Strategy Refinement: Reflection on past decisions and strategies enables agents to refine their approach and make more informed choices.\n' +
-    '\n' +
-    '5. Efficiency and Optimization: Self-reflection encourages agents to be smart and efficient in their actions, aiming to complete tasks in the least number of steps.\n' +
-    '\n' +
-    'These ideas highlight the importance of self-reflection in enhancing performance and guiding future actions.'
-}
-*/
-\`\`\`
-
-
-The \`Memory buffer\` has context to resolve \`"it"\` ("self-reflection") in the below question.
-
-
-\`\`\`typescript
-const followupResult = await chain.call({
-  question: "How does the Reflexion paper handle it?"
-});
-console.log(followupResult);
-
-/*
-{
-  text: "The Reflexion paper introduces a framework that equips agents with dynamic memory and self-reflection capabilities to improve their reasoning skills. The approach involves showing the agent two-shot examples, where each example consists of a failed trajectory and an ideal reflection on how to guide future changes in the agent's plan. These reflections are then added to the agent's working memory as context for querying a language model. The agent uses this self-reflection information to make decisions on whether to start a new trial or continue with the current plan."
-}
-*/
-\`\`\`
-
-
-### 4.2 Going deeper
-
-The [documentation](/docs/modules/chains/popular/chat_vector_db) on \`ConversationalRetrievalQAChain\` offers a few extensions, such as streaming and source documents.
-
-
-# Conversational Retrieval Agents
-
-This is an agent specifically optimized for doing retrieval when necessary while holding a conversation and being able
-to answer questions based on previous dialogue in the conversation.
-
-To start, we will set up the retriever we want to use, then turn it into a retriever tool. Next, we will use the high-level constructor for this type of agent.
-Finally, we will walk through how to construct a conversational retrieval agent from components.
-
-## The Retriever
-
-To start, we need a retriever to use! The code here is mostly just example code. Feel free to use your own retriever and skip to the next section on creating a retriever tool.
-
-\`\`\`typescript
-import { FaissStore } from "langchain/vectorstores/faiss";
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { TextLoader } from "langchain/document_loaders/fs/text";
-import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
-
-const loader = new TextLoader("state_of_the_union.txt");
-const docs = await loader.load();
-const splitter = new RecursiveCharacterTextSplitter({
-  chunkSize: 1000,
-  chunkOverlap: 0
-});
-
-const texts = await splitter.splitDocuments(docs);
-
-const vectorStore = await FaissStore.fromDocuments(texts, new OpenAIEmbeddings());
-
-const retriever = vectorStore.asRetriever();
-\`\`\`
-
-## Retriever Tool
-
-Now we need to create a tool for our retriever. The main things we need to pass in are a \`name\` for the retriever as well as a \`description\`. These will both be used by the language model, so they should be informative.
-
-\`\`\`typescript
-import { createRetrieverTool } from "langchain/agents/toolkits";
-
-const tool = createRetrieverTool(retriever, {
-  name: "search_state_of_union",
-  description: "Searches and returns documents regarding the state-of-the-union.",
-});
-\`\`\`
-
-## Agent Constructor
-
-Here, we will use the high level \`create_conversational_retrieval_agent\` API to construct the agent.
-Notice that beside the list of tools, the only thing we need to pass in is a language model to use.
-
-Under the hood, this agent is using the OpenAIFunctionsAgent, so we need to use an ChatOpenAI model.
-
-\`\`\`typescript
-import { createConversationalRetrievalAgent } from "langchain/agents/toolkits";
-import { ChatOpenAI } from "langchain/chat_models/openai";
-
-const model = new ChatOpenAI({
-  temperature: 0,
-});
-
-const executor = await createConversationalRetrievalAgent(model, [tool], {
-  verbose: true,
-});
-\`\`\`
-
-We can now try it out!
-
-\`\`\`typescript
-const result = await executor.call({
-  input: "Hi, I'm Bob!"
-});
-
-console.log(result);
-
-/*
-  {
-    output: 'Hello Bob! How can I assist you today?',
-    intermediateSteps: []
-  }
-*/
-
-const result2 = await executor.call({
-  input: "What's my name?"
-});
-
-console.log(result2);
-
-/*
-  { output: 'Your name is Bob.', intermediateSteps: [] }
-*/
-
-const result3 = await executor.call({
-  input: "What did the president say about Ketanji Brown Jackson in the most recent state of the union?"
-});
-
-console.log(result3);
-
-/*
-  {
-    output: "In the most recent state of the union, President Biden mentioned Ketanji Brown Jackson. He nominated her as a Circuit Court of Appeals judge and described her as one of the nation's top legal minds who will continue Justice Breyer's legacy of excellence. He mentioned that she has received a broad range of support, including from the Fraternal Order of Police and former judges appointed by Democrats and Republicans.",
-    intermediateSteps: [
-      {...}
-    ]
-  }
-*/
-
-const result4 = await executor.call({
-  input: "How long ago did he nominate her?"
-});
-
-console.log(result4);
-
-/*
-  {
-    output: 'President Biden nominated Ketanji Brown Jackson four days before the most recent state of the union address.',
-    intermediateSteps: []
-  }
-*/
-\`\`\`
-
-Note that for the final call, the agent used previously retrieved information to answer the query and did not need to call the tool again!
-
-Here's a trace showing how the agent fetches documents to answer the question with the retrieval tool:
-
-https://smith.langchain.com/public/1e2b1887-ca44-4210-913b-a69c1b8a8e7e/r
-
-## Creating from components
-
-What actually is going on underneath the hood? Let's take a look so we can understand how to modify things going forward.
-
-### Memory
-
-In this example, we want the agent to remember not only previous conversations, but also previous intermediate steps.
-For that, we can use \`OpenAIAgentTokenBufferMemory\`. Note that if you want to change whether the agent remembers intermediate steps,
-how the long the retained buffer is, or anything like that you should change this part.
-
-\`\`\`typescript
-import { OpenAIAgentTokenBufferMemory } from "langchain/agents/toolkits";
-
-const memory = new OpenAIAgentTokenBufferMemory({
-  llm: model,
-  memoryKey: "chat_history",
-  outputKey: "output"
-});
-\`\`\`
-
-You should make sure \`memoryKey\` is set to \`"chat_history"\` and \`outputKey\` is set to \`"output"\` for the OpenAI functions agent.
-This memory also has \`returnMessages\` set to \`true\` by default.
-
-You can also load messages from prior conversations into this memory by initializing it with a pre-loaded chat history:
-
-\`\`\`typescript
-import { ChatOpenAI } from "langchain/chat_models/openai";
-import { OpenAIAgentTokenBufferMemory } from "langchain/agents/toolkits";
-import { HumanMessage, AIMessage } from "langchain/schema";
-import { ChatMessageHistory } from "langchain/memory";
-
-const previousMessages = [
-  new HumanMessage("My name is Bob"),
-  new AIMessage("Nice to meet you, Bob!"),
-];
-
-const chatHistory = new ChatMessageHistory(previousMessages);
-
-const memory = new OpenAIAgentTokenBufferMemory({
-  llm: new ChatOpenAI({}),
-  memoryKey: "chat_history",
-  outputKey: "output",
-  chatHistory,
-});
-\`\`\`
-
-### Agent executor
-
-We can recreate the agent executor directly with the \`initializeAgentExecutorWithOptions\` method.
-This allows us to customize the agent's system message by passing in a \`prefix\` into \`agentArgs\`.
-Importantly, we must pass in \`return_intermediate_steps: true\` since we are recording that with our memory object.
-
-\`\`\`typescript
-import { initializeAgentExecutorWithOptions } from "langchain/agents";
-
-const executor = await initializeAgentExecutorWithOptions(tools, llm, {
-  agentType: "openai-functions",
-  memory,
-  returnIntermediateSteps: true,
-  agentArgs: {
-    prefix:
-      prefix ??
-      \`Do your best to answer the questions. Feel free to use any tools available to look up relevant information, only if necessary.\`,
-  },
-});
-\`\`\`
-`;
+Information security practices
+Employee behavior can have a big impact on information security in organizations. Cultural concepts can help different segments of the organization work effectively or work against effectiveness toward information security within an organization. Information security culture is the "...totality of patterns of behavior in an organization that contributes to the protection of information of all kinds."[42]
+
+Andersson and Reimers (2014) found that employees often do not see themselves as part of their organization's information security effort and often take actions that impede organizational changes.[43] Indeed, the Verizon Data Breach Investigations Report 2020, which examined 3,950 security breaches, discovered 30% of cybersecurity incidents involved internal actors within a company.[44] Research shows information security culture needs to be improved continuously. In "Information Security Culture from Analysis to Change", authors commented, "It's a never-ending process, a cycle of evaluation and change or maintenance." To manage the information security culture, five steps should be taken: pre-evaluation, strategic planning, operative planning, implementation, and post-evaluation.[45]
+
+Pre-evaluation: To identify the awareness of information security within employees and to analyze the current security policies.
+Strategic planning: To come up with a better awareness program, clear targets need to be set. Assembling a team of skilled professionals is helpful to achieve it.
+Operative planning: A good security culture can be established based on internal communication, management buy-in, security awareness and a training program.[45]
+Implementation: Four stages should be used to implement the information security culture. They are:
+Commitment of the management
+Communication with organizational members
+Courses for all organizational members
+Commitment of the employees[45]
+Post-evaluation: To assess the success of the planning and implementation, and to identify unresolved areas of concern.
+Computer protection (countermeasures)
+In computer security, a countermeasure is an action, device, procedure or technique that reduces a threat, a vulnerability, or an attack by eliminating or preventing it, by minimizing the harm it can cause, or by discovering and reporting it so that corrective action can be taken.[46][47][48]
+
+Some common countermeasures are listed in the following sections:
+
+Security by design
+Main article: Secure by design
+Security by design, or alternately secure by design, means that the software has been designed from the ground up to be secure. In this case, security is considered a main feature.
+
+The UK government's National Cyber Security Centre separate secure cyber design principles into five sections:[49]
+
+Before a secure system is created or updated, companies should ensure they understand the fundamentals and the context around the system they are trying to create, and to identify any apart weaknesses in a system.
+Companies should design and centre their security around techniques and defences which make attacking their data or systems inherently more challenging for attackers.
+Companies should ensure that their core services that rely on technology are protected so that the technology is always available.
+Although systems can be created which are safe against a multitude of attacks, that does not mean that attacks will not be attempted. Despite one's security, all companies' systems should aim to be able to detect and spot attacks as soon as they occur to ensure the most effective response to them.
+Companies should create secure systems designed so that any attack that is "successful" has a loss severity.
+These design principles of security by design can include some of the following techniques:
+
+The principle of least privilege, where each part of the system has only the privileges that are needed for its function. That way, even if an attacker gains access to that part, they only have limited access to the whole system.
+Automated theorem proving to prove the correctness of crucial software subsystems.
+Code reviews and unit testing, approaches to make modules more secure where formal correctness proofs are not possible.
+Defense in depth, where the design is such that more than one subsystem needs to be violated to compromise the integrity of the system and the information it holds.
+Default secure settings, and design to fail secure rather than fail insecure (see fail-safe for the equivalent in safety engineering). Ideally, a secure system should require a deliberate, conscious, knowledgeable and free decision on the part of legitimate authorities in order to make it insecure.
+Audit trails track system activity so that when a security breach occurs, the mechanism and extent of the breach can be determined. Storing audit trails remotely, where they can only be appended to, can keep intruders from covering their tracks.
+Full disclosure of all vulnerabilities, to ensure that the window of vulnerability is kept as short as possible when bugs are discovered.
+Security architecture
+Security architecture can be defined as the "practice of designing computer systems to achieve security goals."[50] These goals have overlap with the principles of "security by design" explored above, including to "make initial compromise of the system difficult," and to "limit the impact of any compromise."[50] In practice, the role of a security architect would be to ensure the structure of a system reinforces the security of the system, and that new changes are safe and meet the security requirements of the organisation.[51][52]
+
+Similarly, Techopedia defines security architecture as "a unified security design that addresses the necessities and potential risks involved in a certain scenario or environment. It also specifies when and where to apply security controls. The design process is generally reproducible." The key attributes of security architecture are:[53]
+
+the relationship of different components and how they depend on each other.
+determination of controls based on risk assessment, good practices, finances, and legal matters.
+the standardization of controls.
+Practicing security architecture provides the right foundation to systematically address business, IT and security concerns in an organization.
+
+Security measures
+A state of computer security is the conceptual ideal, attained by the use of the three processes: threat prevention, detection, and response. These processes are based on various policies and system components, which include the following:
+
+Limiting the access of individuals using user account access controls and using cryptography can protect systems files and data, respectively.
+Firewalls are by far the most common prevention systems from a network security perspective as they can (if properly configured) shield access to internal network services, and block certain kinds of attacks through packet filtering. Firewalls can be both hardware and software-based. Firewalls monitor and control incoming and outgoing traffic of a computer network and establish a barrier between a trusted network and an untrusted network.[54]
+Intrusion Detection System (IDS) products are designed to detect network attacks in-progress and assist in post-attack forensics, while audit trails and logs serve a similar function for individual systems.
+Response is necessarily defined by the assessed security requirements of an individual system and may cover the range from simple upgrade of protections to notification of legal authorities, counter-attacks, and the like. In some special cases, the complete destruction of the compromised system is favored, as it may happen that not all the compromised resources are detected.
+Cyber security awareness training to cope with cyber threats and attacks.[55]
+Forward web proxy solutions can prevent the client to visit malicious web pages and inspect the content before downloading to the client machines.
+Today, computer security consists mainly of preventive measures, like firewalls or an exit procedure. A firewall can be defined as a way of filtering network data between a host or a network and another network, such as the Internet. They can be implemented as software running on the machine, hooking into the network stack (or, in the case of most UNIX-based operating systems such as Linux, built into the operating system kernel) to provide real-time filtering and blocking.[54] Another implementation is a so-called physical firewall, which consists of a separate machine filtering network traffic. Firewalls are common amongst machines that are permanently connected to the Internet.
+
+Some organizations are turning to big data platforms, such as Apache Hadoop, to extend data accessibility and machine learning to detect advanced persistent threats.[56]`;
